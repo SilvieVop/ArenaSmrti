@@ -1,9 +1,10 @@
 # Co jsem v tomto listu chtěla mít a asi to nějak nevyšlo:
 # - popis můšketýrů
 # - def jejich vlastnostní jako je utok, obrana a ukazatel života
-# - spouští se zde i celý boj mušketýrů .. Nevypisuje se celý.. někde je chyba a Neumírají a nikdo nevyhrává.
-# - Chyba - bojují všichni a ne jen ti vybraní ze souboru zakladni_vstupy.py
-# ty same problémy u čarodějů
+# TODO list
+# - všichni umírají
+# - Chyba - bojují všichni a ne jen ti vybraní ze souboru zakladni_vstupy.
+# Stejné problém jsou v listu carodejove.py
 
 
 import random
