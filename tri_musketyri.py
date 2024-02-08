@@ -25,7 +25,7 @@ class TriMusketyri:
     @property # getter
     def zautoc(self):  # Dekorátor ?? kam dát setter a co do něj?? tady chci aby mi to generoval jméno protivnika -> nefunguje
         utok = random.randint(1, self.utok)
-        print(f"{self.jmeno} zaútočil na {self.vybrany_protivnik} se silou útoku: {utok}.")
+        print(f"{self.jmeno} zaútočil na {vybrany_protivnik} se silou útoku: {utok}.")
         return utok
 
     # @vybrany_protivnik.setter
@@ -36,57 +36,47 @@ class TriMusketyri:
         print(f"{self.jmeno} se brání silou: {obrana}.\n")
         return obrana
 
-    def aktualni_zivot(self): # tohle by melo ukazovat, kolik bodů poraneni obdrzel a kolik zbyva zivotů pred smrti
+    def aktualni_zivot(self):
         zivot = self.zivot + self.obrana - self.utok
-        poraneni = max(0,self.utok - self.obrana)
-        self.zivot -= poraneni
+        poraneni = self.utok - self.obrana  # Vypočítat poškození bez použití max()
+        self.zivot -= max(poraneni, 1)  # Snížit život o poškození (alespoň 0)
 
-        if zivot > 0:
-            print(f"{self.jmeno} utrpěl {poraneni} bodů poškození a jeho zbývající život je {zivot} bodů.")
-            # print(f"Zbývající život je {self.zivot} bodů.")
-
-        elif zivot <= 0:
-            print(f"{self.jmeno} si připsal {poraneni} bodů ke svému životu")
-
-
+        if self.zivot > 0:
+            print(f"{self.jmeno} utrpěl {max(poraneni,0)} bodů poškození a jeho zbývající život je {self.zivot} bodů.")
         else:
             self.zivot = 0
             print(Fore.RED + f"{self.jmeno} JE MRTVÝ" + Style.RESET_ALL)
 
-        return zivot
+        return self.zivot
 
-        # else:
-        #     self.zivot < 0
-        #     print(Fore.RED + f"{self.jmeno} JE TOTÁÁÁÁÁÁLNĚ MRTVÝÝÝÝÝ" + Style.RESET_ALL)
-
-vybrany_protivnik = "{vybrany_protivnik}" # tak dobrý.. už mi to generuje vybraneho musketyra ale jak mu nadefinuji aby to vzal z listu zakladni_vstupy??
+vybrany_protivnik = "Protivnik"
 
 class Sermir(TriMusketyri):
-    def __init__(self,jmeno: object,utok: object,zraneni: object,obrana: object,vybrany_protivnik: object) -> object:
-        super().__init__(jmeno, 100, utok , zraneni, obrana, vybrany_protivnik)
+    def __init__(self, jmeno, utok, zraneni, obrana, vybrany_protivnik):
+        super().__init__(jmeno, 10, utok, zraneni, obrana, vybrany_protivnik)
 
-musketyr1 = Sermir("Athos", 21, 32, 24, [vybrany_protivnik])
-musketyr1.bran_se(0)
-musketyr1.zautoc
-musketyr1.aktualni_zivot()
+musketyr1 = Sermir("Athos", 21, 32, 24, vybrany_protivnik)
+musketyr2 = Sermir("Porthos", 20, 31, 33, vybrany_protivnik)
+musketyr3 = Sermir("Aramis", 20, 23, 26, vybrany_protivnik)
+musketyr4 = Sermir("D'Artagnan", 23, 32, 29, vybrany_protivnik)
 
-musketyr2 = Sermir("Porthos", 20, 31, 33, [vybrany_protivnik])
-musketyr2.bran_se(0)
-musketyr2.zautoc
-musketyr2.aktualni_zivot()
+while musketyr1.zivot > 0 or musketyr2.zivot > 0 or musketyr3.zivot > 0 or musketyr4.zivot > 0:
+    if musketyr1.zivot > 0:
+        musketyr1.bran_se(1)
+        musketyr1.zautoc
+        musketyr1.aktualni_zivot()
+    if musketyr2.zivot > 0:
+        musketyr2.bran_se(1)
+        musketyr2.zautoc
+        musketyr2.aktualni_zivot()
+    if musketyr3.zivot > 0:
+        musketyr3.bran_se(1)
+        musketyr3.zautoc
+        musketyr3.aktualni_zivot()
+    if musketyr4.zivot > 0:
+        musketyr4.bran_se(1)
+        musketyr4.zautoc
+        musketyr4.aktualni_zivot()
 
-musketyr3 = Sermir("Aramis", 20, 23, 26, [vybrany_protivnik])
-musketyr3.bran_se(0)
-musketyr3.zautoc
-musketyr3.aktualni_zivot()
 
-musketyr4 = Sermir("D'Artagnan", 23, 32, 29, [vybrany_protivnik]),
-musketyr4.bran_se(0)
-musketyr4.zautoc
-musketyr4.aktualni_zivot()
-
-vybrany_protivnik = Sermir(jmeno=vybrany_protivnik),
-vybrany_protivnik.bran_se(0)
-vybrany_protivnik.zautoc
-vybrany_protivnik.aktualni_zivot()
-
+#print(type(self.zivot))
