@@ -57,6 +57,8 @@ class ArenaSmrti:
             utok_musketyr4 = self.musketyr3.zautoc
             self.musketyr3.bran_se(utok_musketyr4)
 
+            pass
+
 # if self.zivot == 0:
             #     print(Fore.RED + f"{self.jmeno} JE MRTVÝ" + Style.RESET_ALL)
             # # else:

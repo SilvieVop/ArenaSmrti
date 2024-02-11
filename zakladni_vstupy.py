@@ -1,6 +1,25 @@
 # Zde jsou základní otázky pro výběr bojovníka, vybrání náhodného protivníka a představení bojovníků.
 
+
+def handle_user_input():
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                # Provádět akce pro stisknutí klávesy UP
+                print("Klávesa UP byla stisknuta")
+            elif event.key == pygame.K_DOWN:
+                # Provádět akce pro stisknutí klávesy DOWN
+                print("Klávesa DOWN byla stisknuta")
+            elif event.key == pygame.K_LEFT:
+                # Provádět akce pro stisknutí klávesy LEFT
+                print("Klávesa LEFT byla stisknuta")
+            elif event.key == pygame.K_RIGHT:
+                # Provádět akce pro stisknutí klávesy RIGHT
+                print("Klávesa RIGHT byla stisknuta")
+                pass
+
 import random
+
 
 from colorama import Fore, Style
 

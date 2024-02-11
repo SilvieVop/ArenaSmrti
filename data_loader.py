@@ -1,57 +1,71 @@
 # Není hotovo, nevím jestli bude vůbec použito
 # obrázky ?? bmp nebo mohu i Jpg ??
-
+# png - proč je to červený?
+import os
 import pygame
 import sys
+#from zakladni_vstupy import handle_user_input
 
-class Settings:
-    def __init__(self):
-        self.screen_width = 1200
-        self.screen_height = 800
-        self.bg_color = (200, 155, 255)
+# Inicializace pygame
+pygame.init()
 
-class DataLoader:
-    def __init__(self):
-        pass
+# Velikost okna
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 800
 
-    def load_zakladni_vstupy(self, zakladni_vstupy):
-        self.zakladni_vstupy = zakladni_vstupy
-        # Mělo by to načíst vstupy ze zakladny_vstupy
+# Barvy
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
-    def load_tri_musketyri(self, tri_musketyri):
-        self.tri_musketyri = tri_musketyri
-        # Načte data ze souboru tri_musketyri
+# Nastavení okna
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("ArenaSmrti")
 
-    def load_arena_musketyri(self, arena_musketyri):
-        self.arena_musketyri = arena_musketyri
+# Načtení obrázků
+script_dir = os.path.dirname(__file__)
+image_folder = os.path.join(script_dir, "image")
 
-    def load_carodejove(self, carodejove):
-        self.carodejove = carodejove
+background_image = pygame.image.load(os.path.join(image_folder, "background.png"))
+musketeer_image = pygame.image.load(os.path.join(image_folder, "muscleteers.png"))
 
-    def load_arena_carodejove(self, arena_carodejove):
-        self.arena_carodejove = carodejove
+# Změna velikosti obrázků
+background_image = pygame.transform.scale(background_image, (WINDOW_WIDTH, WINDOW_HEIGHT))
+musketeer_image = pygame.transform.scale(musketeer_image, (264, 232))
+musketeer_image.set_colorkey((255, 255, 255))  # Nastavení průhledné barvy
 
-class Game:
-    def __init__(self):
-        pygame.init()
-        self.settings = Settings()
-        self.data_loader = DataLoader()
-        self.data_loader.load_zakladni_vstupy("zakladni_vstupy.py")
-        self.data_loader.load_tri_musketyri("tri_musketyri.py")
-        self.data_loader.load_arena_musketyri("arena_musketyr.py")
-        self.data_loader.load_carodejove("carodejove.py")
-        self.data_loader.load_arena_carodejove("arena_carodejove.py")
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+# Font pro textový výstup
+font = pygame.font.Font(None, 36)
 
-    def run_game(self):
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+# Hlavní smyčka hry
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-            pygame.display.flip()
+    # Vykreslení pozadí
+    screen.blit(background_image, (0, 0))
 
-if __name__ == "__main__":
-    game = Game()
-    game.run_game()
+    # Vykreslení obrázku
+    musketeer_rect = musketeer_image.get_rect()
+    musketeer_rect.y = WINDOW_HEIGHT // 3.4 + 100 # toto by mělo zajistit posunutí obrázku pod střed
+    musketeer_rect.x = WINDOW_WIDTH // 4.8 + 100 # pokus jestli se to vykreslí tak jak chci -> tak by to šlo
+    screen.blit(musketeer_image, musketeer_rect)
+
+    # Vykreslení textu na terminál
+    terminal_height = 150  # Výška terminálu
+    pygame.draw.rect(screen, BLACK, (0, WINDOW_HEIGHT - terminal_height, WINDOW_WIDTH, terminal_height))  # Vykreslení černého pozadí pro terminál
+
+
+    # Zde vykreslete text pomocí pygame.draw.text() nebo pygame.font.Font.render() funkce
+    text_surface = font.render("Vítejte v hře!", True, WHITE)  # Vytvoření textového povrchu s bílou barvou
+    screen.blit(text_surface, (20, WINDOW_HEIGHT - terminal_height + 20))  # Vykreslení textu na určenou pozici
+
+    # Aktualizace obrazovky
+    pygame.display.update()
+
+    # Zpracování uživatelského vstupu
+    #handle_user_input()
+
+pygame.quit()
+sys.exit()

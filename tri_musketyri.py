@@ -11,6 +11,7 @@ import random
 
 from colorama import Fore, Style
 
+
 class TriMusketyri:
     pocet_zdravi = 100
     poraneni = 0
@@ -56,28 +57,28 @@ class Sermir(TriMusketyri):
     def __init__(self, jmeno, utok, zraneni, obrana, vybrany_protivnik):
         super().__init__(jmeno, 10, utok, zraneni, obrana, vybrany_protivnik)
 
-musketyr1 = Sermir("Athos", 21, 32, 24, vybrany_protivnik)
-musketyr2 = Sermir("Porthos", 20, 31, 33, vybrany_protivnik)
-musketyr3 = Sermir("Aramis", 20, 23, 26, vybrany_protivnik)
-musketyr4 = Sermir("D'Artagnan", 23, 32, 29, vybrany_protivnik)
+musketyr1 = Sermir("Athos", 2, 3, 2, vybrany_protivnik)
+musketyr2 = Sermir("Porthos", 2, 1, 3, vybrany_protivnik)
+musketyr3 = Sermir("Aramis", 2, 3, 2, vybrany_protivnik)
+musketyr4 = Sermir("D'Artagnan", 3, 2, 2, vybrany_protivnik)
 
 while musketyr1.zivot > 0 or musketyr2.zivot > 0 or musketyr3.zivot > 0 or musketyr4.zivot > 0:
     if musketyr1.zivot > 0:
         musketyr1.bran_se(1)
-        musketyr1.zautoc
+        musketyr1.zautoc()
         musketyr1.aktualni_zivot()
     if musketyr2.zivot > 0:
         musketyr2.bran_se(1)
-        musketyr2.zautoc
+        musketyr2.zautoc()
         musketyr2.aktualni_zivot()
     if musketyr3.zivot > 0:
         musketyr3.bran_se(1)
-        musketyr3.zautoc
+        musketyr3.zautoc()
         musketyr3.aktualni_zivot()
     if musketyr4.zivot > 0:
         musketyr4.bran_se(1)
-        musketyr4.zautoc
+        musketyr4.zautoc()
         musketyr4.aktualni_zivot()
-
+    pass
 
 #print(type(self.zivot))
