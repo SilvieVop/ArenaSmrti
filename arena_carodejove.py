@@ -1,3 +1,5 @@
+# není tenhle soubor náhodou trochu zbytečnej???
+#
 
 from colorama import Fore, Style
 

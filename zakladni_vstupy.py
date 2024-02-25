@@ -1,13 +1,11 @@
 # Zde jsou základní otázky pro výběr bojovníka, vybrání náhodného protivníka a představení bojovníků.
 import pygame
 import random
-
-one_letter = None
-
 from colorama import Fore, Style
 
 def handle_user_input():
     global one_letter
+    one_letter = True
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -24,33 +22,33 @@ def handle_user_input():
             else:
                 print(f"Výběr nerozpoznán")
 
-    # def predstaveni_musketyra(musketyr):  PRESUNUTO NA KONEC
-    #     musketyri_popis = {
-    #         "Aramis": Fore.GREEN + f"Jmenuji se Aramis a rozpíchám tě jako jehelníček.. "
-    #                                f"MHUA MHUA MHUA\n" + Style.RESET_ALL,
-    #         "Athos": Fore.BLUE + f"Jmenuji se Athos a dnes budu tvým poslem smrti, "
-    #                              f"ty zákeřný pavouku!!!\n" + Style.RESET_ALL,
-    #         "D'Artagnan": Fore.RED + f"Jmenuji se D'Artagnan a doufám, "
-    #                                  f"že máš závěť napsanout... CHA CHA\n" + Style.RESET_ALL,
-    #         "Porthos": Fore.YELLOW + f"Jako že se Porthos jmenuji, tak Vás utopím v Portském víně jako mouchu..."
-    #                                  f" GLO GLO GLO\n" + Style.RESET_ALL
-    #     }
-    #     popis = musketyri_popis.get(musketyr)
-    #     print(f"{musketyr}: {popis}")
-    #
-    # def predstaveni_carodej(carodej):
-    #     carodej_popis = {
-    #         "Gandalf": Fore.BLUE + f"Dobrý den, Gandalf jméno mé.. Podívejte na můj ohňostroj, který tě zničí "
-    #                                f"... CHA CHA CHA\n" + Style.RESET_ALL,
-    #         "Merlin": Fore.GREEN + f"Jsem mocný čarodej Merlin - Král stromů, rostlin, zvířectva a teď jsem i tvůj PÁN.. "
-    #                                f"MHUA MHUA MHUA!!!\n" + Style.RESET_ALL,
-    #         "Kaprfíld": Fore.RED + f"Čauves jsem Dejv.. Dejv Kaprfíld. Znáš nějaký kouzelnický trik.. tak koukej, koukej.."
-    #                                f" AHAAA to jsem tě napálil viď\n" + Style.RESET_ALL,
-    #         "Žito": Fore.YELLOW + f"Jako že se kouzelník Žito jmenuji, tak z tebe vymlátím duši..."
-    #                               f" HA HA HA\n" + Style.RESET_ALL
-    #     }
-    #     popis = carodej_popis.get(carodej)
-    #     print(f"{carodej}: {popis}")
+    def predstaveni_musketyra(musketyr):  #PRESUNUTO NA KONEC - je to tak dobře??? uplně nevim
+        musketyri_popis = {
+            "Aramis": Fore.GREEN + f"Jmenuji se Aramis a rozpíchám tě jako jehelníček.. "
+                                   f"MHUA MHUA MHUA\n" + Style.RESET_ALL,
+            "Athos": Fore.BLUE + f"Jmenuji se Athos a dnes budu tvým poslem smrti, "
+                                 f"ty zákeřný pavouku!!!\n" + Style.RESET_ALL,
+            "D'Artagnan": Fore.RED + f"Jmenuji se D'Artagnan a doufám, "
+                                     f"že máš závěť napsanout... CHA CHA\n" + Style.RESET_ALL,
+            "Porthos": Fore.YELLOW + f"Jako že se Porthos jmenuji, tak Vás utopím v Portském víně jako mouchu..."
+                                     f" GLO GLO GLO\n" + Style.RESET_ALL
+        }
+        popis = musketyri_popis.get(musketyr)
+        print(f"{musketyr}: {popis}")
+
+    def predstaveni_carodej(carodej):
+        carodej_popis = {
+            "Gandalf": Fore.BLUE + f"Dobrý den, Gandalf jméno mé.. Podívejte na můj ohňostroj, který tě zničí "
+                                   f"... CHA CHA CHA\n" + Style.RESET_ALL,
+            "Merlin": Fore.GREEN + f"Jsem mocný čarodej Merlin - Král stromů, rostlin, zvířectva a teď jsem i tvůj PÁN.. "
+                                   f"MHUA MHUA MHUA!!!\n" + Style.RESET_ALL,
+            "Kaprfíld": Fore.RED + f"Čauves jsem Dejv.. Dejv Kaprfíld. Znáš nějaký kouzelnický trik.. tak koukej, koukej.."
+                                   f" AHAAA to jsem tě napálil viď\n" + Style.RESET_ALL,
+            "Žito": Fore.YELLOW + f"Jako že se kouzelník Žito jmenuji, tak z tebe vymlátím duši..."
+                                  f" HA HA HA\n" + Style.RESET_ALL
+        }
+        popis = carodej_popis.get(carodej)
+        print(f"{carodej}: {popis}")
 
     # SKUPINA MUSKETYR/SERMIR/mělo by se přenášet i do listu tri_musketyri
     if one_letter == "M":
@@ -184,33 +182,6 @@ def handle_user_input():
         print("Nerozpoznáno. Zvolte platnou možnost 'M' nebo 'C'.")
 
 
-    def predstaveni_musketyra(musketyr):
-        musketyri_popis = {
-            "Aramis": Fore.GREEN + f"Jmenuji se Aramis a rozpíchám tě jako jehelníček.. "
-                                   f"MHUA MHUA MHUA\n" + Style.RESET_ALL,
-            "Athos": Fore.BLUE + f"Jmenuji se Athos a dnes budu tvým poslem smrti, "
-                                 f"ty zákeřný pavouku!!!\n" + Style.RESET_ALL,
-            "D'Artagnan": Fore.RED + f"Jmenuji se D'Artagnan a doufám, "
-                                     f"že máš závěť napsanout... CHA CHA\n" + Style.RESET_ALL,
-            "Porthos": Fore.YELLOW + f"Jako že se Porthos jmenuji, tak Vás utopím v Portském víně jako mouchu..."
-                                     f" GLO GLO GLO\n" + Style.RESET_ALL
-        }
-        popis = musketyri_popis.get(musketyr)
-        print(f"{musketyr}: {popis}")
-
-    def predstaveni_carodej(carodej):
-        carodej_popis = {
-            "Gandalf": Fore.BLUE + f"Dobrý den, Gandalf jméno mé.. Podívejte na můj ohňostroj, který tě zničí "
-                                   f"... CHA CHA CHA\n" + Style.RESET_ALL,
-            "Merlin": Fore.GREEN + f"Jsem mocný čarodej Merlin - Král stromů, rostlin, zvířectva a teď jsem i tvůj PÁN.. "
-                                   f"MHUA MHUA MHUA!!!\n" + Style.RESET_ALL,
-            "Kaprfíld": Fore.RED + f"Čauves jsem Dejv.. Dejv Kaprfíld. Znáš nějaký kouzelnický trik.. tak koukej, koukej.."
-                                   f" AHAAA to jsem tě napálil viď\n" + Style.RESET_ALL,
-            "Žito": Fore.YELLOW + f"Jako že se kouzelník Žito jmenuji, tak z tebe vymlátím duši..."
-                                  f" HA HA HA\n" + Style.RESET_ALL
-        }
-        popis = carodej_popis.get(carodej)
-        print(f"{carodej}: {popis}")
 
     # zjištění typu - stále mi to hází nějakou že "int" object is not callable
     # print(type(musketyr1))
@@ -237,3 +208,10 @@ def handle_user_input():
             #     # Provádět akce pro stisknutí klávesy RIGHT
             #     print("Klávesa RIGHT byla stisknuta")
             #     pass
+
+
+def musketyr_vyber_a():
+    return musketyr_vyber_a
+
+def carodej_vyber(carodej_vyber):
+    return carodej_vyber

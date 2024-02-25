@@ -1,14 +1,15 @@
+
+# Ted nevím jestli tento soubor neni tak nějak zbytecny
+
+
 # v tomto listě jsem chtěla mít především třídu ArenaSmrti
 # a co v té aréně budou dělat..
 # mělo by to zobrazovat boj po řádcích
 # měl by tu být konec boje - jeden z hráčů bude mrtvý
 # možná bych mohla mít pouze jednu arenu pro mušketýri i čaroděje..
 
-# sem bych asi měla vložit nějaké argumenty a kwargs pro to aby to bralo ty správné def
+# sem bych asi měla vložit nějaké argumenty a kwargs proto aby to bralo ty správné def
 from colorama import Fore, Style
-
-from zakladni_vstupy import musketyr1, musketyr2, musketyr3, musketyr4
-
 
 class ArenaSmrti:
     def __init__(self, *arg, musketyr1, musketyr2, musketyr3, musketyr4):
@@ -17,7 +18,7 @@ class ArenaSmrti:
         self.musketyr3 = musketyr3
         self.musketyr4 = musketyr4
 
-# tak ti nevim co s tim... ted uz vůbec zapist nechtěji
+# tak ti nevim co s tim... ted uz vůbec zapasit nechtěji
     def zapasit(self):
        while (self.musketyr1.zivot > 0 and self.musketyr2.zivot > 0 and self.musketyr3.zivot > 0
               and self.musketyr4.zivot > 0):

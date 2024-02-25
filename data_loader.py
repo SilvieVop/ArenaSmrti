@@ -2,6 +2,10 @@
 # propojeni se zakladni_vstupy a dalsimy soubory
 
 
+# chtela bych vložit casovač, aby se welcome zobrazilo cca 2 sekundy po zobrazeni background a musceleteera
+# propojeni se zakladni_vstupy a dalsimy soubory
+
+
 import os
 import pygame
 import sys
@@ -70,7 +74,7 @@ while running:
     musketeer_rect = musketeer_image.get_rect()
     musketeer_rect.y = WINDOW_HEIGHT // 3.4 + 100  # Posun obrázku pod střed
     musketeer_rect.x = WINDOW_WIDTH // 4.8 + 100  # Posun obrázku doprava od středu
-    musketeer_image.set_colorkey((255, 255, 255))  # Nastavení průhledné barvy
+    musketeer_image.set_colorkey((255, 255, 255))  # Nastavení průhledné barvy bílá
     screen.blit(musketeer_image, musketeer_rect)
 
     welcome_rect = welcome_image.get_rect()
@@ -84,13 +88,14 @@ while running:
     # Vykreslení černého pozadí pro terminál
 
     # Zde vykreslete text pomocí pygame.draw.text() nebo pygame.font.Font.render() funkce
-    text_surface = font.render("Užijte si zábavu v malé pythonovské hře plné napětí, strachu, vítěztví a porážek...!!!",
+    text_surface = font.render(f"zde by měl být text ze souboru zakladni_vstupy, zajisteni pres to handle_user_input",
                                True, WHITE)  # Vytvoření textového povrchu s bílou barvou
     screen.blit(text_surface, (20, WINDOW_HEIGHT - terminal_height + 20))  # Vykreslení textu na určenou pozici
 
-    # handle_user_input()   # tohle by mělo zajistit volání souboru zakladni_vstupy a zpracovani uzivatelskych vstupu
+    zakladni_vstupy.handle_user_input()   # tohle by mělo zajistit volání souboru zakladni_vstupy a zpracovani uzivatelskych vstupu
     # Aktualizace obrazovky
     pygame.display.update()
 
 pygame.quit()
 sys.exit()
+

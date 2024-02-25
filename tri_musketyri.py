@@ -24,7 +24,7 @@ class TriMusketyri:
         self.obrana = obrana
         self.vybrany_protivnik = vybrany_protivnik
 
-    @property # getter
+    # @property # getter
     def zautoc(self):  # Dekorátor ?? kam dát setter a co do něj?? tady chci aby mi to generoval jméno protivnika -> nefunguje
         utok = random.randint(1, self.utok)
         print(f"{self.jmeno} zaútočil na {vybrany_protivnik} se silou útoku: {utok}.")
