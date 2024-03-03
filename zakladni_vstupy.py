@@ -2,10 +2,36 @@
 import pygame
 import random
 from colorama import Fore, Style
+from collections import namedtuple
 
-def handle_user_input():
+
+# Definice objektu pro mušketýra
+Musketyr = namedtuple("Musketyr", ["jmeno", "popis"])
+# Definice objektu pro čaroděje
+Carodej = namedtuple("Carodej", ["jmeno", "popis"])
+
+# List mušketýrů
+musketyri = [
+    Musketyr("Athos", "Jmenuji se Athos a dnes budu tvým poslem smrti, ty zákeřný pavouku!!!"),
+    Musketyr("Porthos", "Jako že se Porthos jmenuji, tak Vás utopím v Portském víně jako mouchu..."),
+    Musketyr("Aramis", "Jmenuji se Aramis a rozpíchám tě jako jehelníček.."),
+    Musketyr("D'Artagnan", "Jmenuji se D'Artagnan a doufám, že máš závěť napsanout..."),
+]
+
+# List čarodějů
+carodejove = [
+    Carodej("Gandalf", "Dobrý den, Gandalf jméno mé.. Podívejte na můj ohňostroj, který tě zničí"),
+    Carodej("Merlin", "Jsem mocný čarodej Merlin - Král stromů, rostlin, zvířectva a teď jsem i tvůj PÁN"),
+    Carodej("Kaprfíld", "Čauves jsem Dejv.. Dejv Kaprfíld. Znáš nějaký kouzelnický trik.. tak koukej, koukej.."),
+    Carodej("Žito", "Jako že se kouzelník Žito jmenuji, tak z tebe vymlátím duši..."),
+]
+
+
+def handle_user_input() -> object:
     global one_letter
     one_letter = True
+    global musketyri
+    musketyri = True
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -22,7 +48,7 @@ def handle_user_input():
             else:
                 print(f"Výběr nerozpoznán")
 
-    def predstaveni_musketyra(musketyr):  #PRESUNUTO NA KONEC - je to tak dobře??? uplně nevim
+    def predstaveni_musketyra(musketyr):
         musketyri_popis = {
             "Aramis": Fore.GREEN + f"Jmenuji se Aramis a rozpíchám tě jako jehelníček.. "
                                    f"MHUA MHUA MHUA\n" + Style.RESET_ALL,
@@ -40,9 +66,11 @@ def handle_user_input():
         carodej_popis = {
             "Gandalf": Fore.BLUE + f"Dobrý den, Gandalf jméno mé.. Podívejte na můj ohňostroj, který tě zničí "
                                    f"... CHA CHA CHA\n" + Style.RESET_ALL,
-            "Merlin": Fore.GREEN + f"Jsem mocný čarodej Merlin - Král stromů, rostlin, zvířectva a teď jsem i tvůj PÁN.. "
+            "Merlin": Fore.GREEN + f"Jsem mocný čarodej Merlin - Král stromů, rostlin,"
+                                   f" zvířectva a teď jsem i tvůj PÁN.. "
                                    f"MHUA MHUA MHUA!!!\n" + Style.RESET_ALL,
-            "Kaprfíld": Fore.RED + f"Čauves jsem Dejv.. Dejv Kaprfíld. Znáš nějaký kouzelnický trik.. tak koukej, koukej.."
+            "Kaprfíld": Fore.RED + f"Čauves jsem Dejv.. Dejv Kaprfíld. Znáš nějaký kouzelnický trik.."
+                                   f" tak koukej, koukej.."
                                    f" AHAAA to jsem tě napálil viď\n" + Style.RESET_ALL,
             "Žito": Fore.YELLOW + f"Jako že se kouzelník Žito jmenuji, tak z tebe vymlátím duši..."
                                   f" HA HA HA\n" + Style.RESET_ALL
@@ -66,7 +94,8 @@ def handle_user_input():
                 "T": Fore.BLUE + "Athos je nejstarší a nejvíce záhadný ze skupiny mušketýrů." + Style.RESET_ALL,
                 "D": Fore.RED + "D'Artagnan je mladý a odvážný muž, "
                                 "který se právě připojil k mušketýrům." + Style.RESET_ALL,
-                "P": Fore.YELLOW + "Porthos je obří muž s velkým srdcem a oblibou v dobrém jídle a pití." + Style.RESET_ALL
+                "P": Fore.YELLOW + "Porthos je obří muž s velkým srdcem a oblibou v dobrém jídle a pití."
+                     + Style.RESET_ALL
             }
             popis = musketyri_popis.get(musketyr_vyber_a, "Popis není k dispozici.")
             return popis
@@ -76,40 +105,44 @@ def handle_user_input():
             print("Vybral jste si:")
             print(Fore.GREEN + "Aramise Jehelníčka." + Style.RESET_ALL)
             print(f"{vyber_musketyra_popis(musketyr_vyber_a)}")
-            co_zbylo = ["Athos", "D'Artagnan", "Porthos"]
-            vybrany_musketyr = random.choice(co_zbylo)
+            co_zbylo1 = ["Athos", "D'Artagnan", "Porthos"]
+            vybrany_musketyr = random.choice(co_zbylo1)
             print(f"Byl Vám vybrán protivník {vybrany_musketyr}")
             predstaveni_musketyra(vybrany_musketyr)
+            return vybrany_musketyr
 
         elif musketyr_vyber_a == "T":
             musketyr1 = "Athos"
             print("Vybral jste si:")
             print(Fore.BLUE + "Athose Zoufalce." + Style.RESET_ALL)
             print(f"{vyber_musketyra_popis(musketyr_vyber_a)}")
-            co_zbylo = ["Aramis", "D'Artagnan", "Porthos"]
-            vybrany_musketyr = random.choice(co_zbylo)
+            co_zbylo2 = ["Aramis", "D'Artagnan", "Porthos"]
+            vybrany_musketyr = random.choice(co_zbylo2)
             print(f"Byl Vám vybrán protivník {vybrany_musketyr}")
             predstaveni_musketyra(vybrany_musketyr)
+            return vybrany_musketyr
 
         elif musketyr_vyber_a == "D":
             musketyr4 = "D'Artagnan"
             print("Vybral jste si:")
             print(Fore.RED + "D'Artagnana Kravou lázeň." + Style.RESET_ALL)
             print(f"{vyber_musketyra_popis(musketyr_vyber_a)}")
-            co_zbylo = ["Aramis", "Athos", "Porthos"]
-            vybrany_musketyr = random.choice(co_zbylo)
+            co_zbylo3 = ["Aramis", "Athos", "Porthos"]
+            vybrany_musketyr = random.choice(co_zbylo3)
             print(f"Byl Vám vybrán protivník {vybrany_musketyr}")
             predstaveni_musketyra(vybrany_musketyr)
+            return vybrany_musketyr
 
         elif musketyr_vyber_a == "P":
             musketyr2 = "Porthos"
             print("Vybral jste si:")
             print(Fore.YELLOW + "Porthose Ožralu." + Style.RESET_ALL)
             print(f"{vyber_musketyra_popis(musketyr_vyber_a)}")
-            co_zbylo = ["Aramis", "D'Artagnan", "Athos"]
-            vybrany_musketyr = random.choice(co_zbylo)
+            co_zbylo4 = ["Aramis", "D'Artagnan", "Athos"]
+            vybrany_musketyr = random.choice(co_zbylo4)
             print(f"Byl Vám vybrán protivník {vybrany_musketyr}")
             predstaveni_musketyra(vybrany_musketyr)
+            return vybrany_musketyr
 
         else:
             print("Nerozpoznáno. Zvolte jednoho ze čtyř mušketýrů R, T, D, P.")
@@ -140,40 +173,44 @@ def handle_user_input():
             print(f"Vybral jsi si mocného čaroděje:")
             print(Fore.BLUE + "Gandalfa Bílého" + Style.RESET_ALL)
             print(f"{vyber_carodeje_popis(vybrany_carodej_a)}")
-            carodej_zbyl = ["Merlin", "Kaprfíld", "Žito"]
-            vybrany_carodej = random.choice(carodej_zbyl)
+            carodej_zbyl1 = ["Merlin", "Kaprfíld", "Žito"]
+            vybrany_carodej = random.choice(carodej_zbyl1)
             print(f"Byl Vám vybrán protivník {vybrany_carodej}")
             predstaveni_carodej(vybrany_carodej)
+            return vybrany_carodej
 
         elif vybrany_carodej_a == "M":
             carodej2 = "Merlin"
             print(f"Vybral jsi si:")
             print(Fore.GREEN + "Merlina vládce lesů" + Style.RESET_ALL)
             print(f"{vyber_carodeje_popis(vybrany_carodej_a)}")
-            carodej_zbyl = ["Gandalf", "Kaprfíld", "Žito"]
-            vybrany_carodej = random.choice(carodej_zbyl)
+            carodej_zbyl2 = ["Gandalf", "Kaprfíld", "Žito"]
+            vybrany_carodej = random.choice(carodej_zbyl2)
             print(f"Byl Vám vybrán protivník {vybrany_carodej}")
             predstaveni_carodej(vybrany_carodej)
+            return vybrany_carodej
 
         elif vybrany_carodej_a == "K":
             carodej3 = "Kaprfíld"
             print(f"Vybral jsi si trhlého:")
             print(Fore.RED + "Dejva Kaprfílda" + Style.RESET_ALL)
             print(f"{vyber_carodeje_popis(vybrany_carodej_a)}")
-            carodej_zbyl = ["Merlin", "Gandalf", "Žito"]
-            vybrany_carodej = random.choice(carodej_zbyl)
+            carodej_zbyl3 = ["Merlin", "Gandalf", "Žito"]
+            vybrany_carodej = random.choice(carodej_zbyl3)
             print(f"Byl Vám vybrán protivník {vybrany_carodej}")
             predstaveni_carodej(vybrany_carodej)
+            return vybrany_carodej
 
         elif vybrany_carodej_a == "Z":
             carodej4 = "Žito"
             print(f"Vybral jsi si šíleného:")
             print(Fore.YELLOW + "kouzelníka Žita" + Style.RESET_ALL)
             print(f"{vyber_carodeje_popis(vybrany_carodej_a)}")
-            carodej_zbyl = ["Merlin", "Kaprfíld", "Gandalf"]
-            vybrany_carodej = random.choice(carodej_zbyl)
+            carodej_zbyl4 = ["Merlin", "Kaprfíld", "Gandalf"]
+            vybrany_carodej = random.choice(carodej_zbyl4)
             print(f"Byl Vám vybrán protivník {vybrany_carodej}")
             predstaveni_carodej(vybrany_carodej)
+            return vybrany_carodej
 
         else:
             print(f"Výběr nerozpoznán. Zvolte platné možnosti G, M, K, Z. ")
@@ -194,24 +231,18 @@ def handle_user_input():
     # print(type(carodej3))
     # print(type(carodej4))
 
-    # podle tohohle pak můžeš nadefinovat klávesy nahoru, dolu, atd...
-    # if event.key == pygame.K_UP:
-            #     # Provádět akce pro stisknutí klávesy UP
-            #     print("Klávesa UP byla stisknuta")
-            # elif event.key == pygame.K_DOWN:
-            #     # Provádět akce pro stisknutí klávesy DOWN
-            #     print("Klávesa DOWN byla stisknuta")
-            # elif event.key == pygame.K_LEFT:
-            #     # Provádět akce pro stisknutí klávesy LEFT
-            #     print("Klávesa LEFT byla stisknuta")
-            # elif event.key == pygame.K_RIGHT:
-            #     # Provádět akce pro stisknutí klávesy RIGHT
-            #     print("Klávesa RIGHT byla stisknuta")
-            #     pass
-
 
 def musketyr_vyber_a():
     return musketyr_vyber_a
 
 def carodej_vyber(carodej_vyber):
     return carodej_vyber
+
+if __name__ == "__main__":
+    pygame.init()
+    handle_user_input()
+    musketyr_vyber_a()
+    carodej_vyber()
+    carodejove()
+    musketyri()
+
